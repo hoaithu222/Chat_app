@@ -15,10 +15,7 @@ createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <ThemeProvider>
         <RouterProvider router={router}>
-          <>
-            <App />
-            <ToastContainer className="flex  justify-center" />
-          </>
+          <App />
         </RouterProvider>
       </ThemeProvider>
     </Provider>

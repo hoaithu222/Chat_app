@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
@@ -7,6 +8,7 @@ export default function App() {
       <div className="flex gap-4">
         <Navbar className="w-[5%]" />
         <Outlet />
+        <ToastContainer className="flex  justify-center" />
       </div>
     </div>
   );
