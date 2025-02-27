@@ -12,13 +12,13 @@ import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <Provider store={store}>
-        <ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <RouterProvider router={router}>
           <App />
-          <ToastContainer className="flex  justify-center" />
-        </ThemeProvider>
-      </Provider>
-    </RouterProvider>
+          <ToastContainer className="flex justify-center" />
+        </RouterProvider>
+      </ThemeProvider>
+    </Provider>
   </StrictMode>
 );
