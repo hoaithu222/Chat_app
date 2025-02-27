@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply px-6 py-2 rounded-xl font-medium transition-all duration-300;
+}
+
+.btn-gradient {
+  @apply text-white font-semibold px-6 py-2 rounded-lg transition-all;
+}
+.btn-small-gradient{
+  @apply text-white font-semibold px-3 py-1 rounded-lg transition-all;
+}
+.btn-base-gradient{
+  @apply text-white font-semibold px-5 py-2 rounded-lg transition-all;
+}
+.btn-full-lg-gradient{
+  @apply text-white font-semibold px-5 py-5 rounded-full transition-all;
+}
+.btn-full-sm-gradient{
+  @apply text-white font-semibold px-3 py-3 rounded-full transition-all;
+}
+.btn-full-xl-gradient{
+  @apply text-white font-semibold px-8 py-8 rounded-full transition-all;
+}
+.bg-gradient-pink-blue {
+  background-image: linear-gradient(135deg, #EC4899, #3B82F6);
+}
+
+.bg-gradient-pink-purple {
+  background-image: linear-gradient(135deg, #EC4899, #9333EA);
+}
+
+.bg-gradient-blue-yellow {
+  background-image: linear-gradient(135deg, #3B82F6, #FACC15);
+}
+
+.bg-gradient-orange-yellow {
+  background-image: linear-gradient(135deg, #cf371d, #71e65f);
+}
