@@ -7,6 +7,9 @@ import MessagePage from "../components/MessagePage";
 import Login from "../page/Login";
 import Register from "../page/Register";
 import PrivateRouter from "../Layout/PrivateRouter";
+import LayoutForm from "../Layout/LayoutForm";
+import Setting from "../page/Setting";
+import SearchUser from "../page/SearchUser";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,19 +22,24 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        children: [
-          {
-            path: "/:id",
-            element: <MessagePage />,
-          },
-        ],
+      },
+      {
+        path: "/:id",
+        element: <MessagePage />,
       },
       { path: "profile", element: <Profile /> },
-      { path: "message", element: <MessagePage /> },
+      { path: "setting", element: <Setting /> },
+      { path: "search-user", element: <SearchUser /> },
     ],
   },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
+  {
+    path: "/",
+    element: <LayoutForm />,
+    children: [
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+    ],
+  },
 ]);
 
 export default router;

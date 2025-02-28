@@ -7,7 +7,6 @@ export default {
       colors: {
         primary: "#1E40AF", // Xanh đậm
         secondary: "#9333EA", // Tí
-        blue: "#3B82F6", // Xanh dương
         background: {
           light: "#F3F4F6",
           dark: "#1E1E2E",

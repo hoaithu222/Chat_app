@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 export default function PrivateRouter({ children }) {
-  const user = useSelector((state) => state.user);
-
-  if (user.name != "") {
+  const token = localStorage.getItem("accessToken");
+  if (token) {
     return children;
   }
+
   return <Navigate to="/login" replace />;
 }

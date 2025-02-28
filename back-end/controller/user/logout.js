@@ -4,6 +4,7 @@ export default async function logout(request, response) {
     try {
         const { refreshToken } = request.body;
 
+
         if (!refreshToken) {
             return response.status(400).json({
                 message: "Không có refresh token",

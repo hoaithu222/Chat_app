@@ -3,20 +3,24 @@ import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/index.jsx";
 import "./index.css";
-
 import App from "./App.jsx";
-
 import { Provider } from "react-redux";
-import { store } from "./redux/store.js";
+import { persistor, store } from "./redux/store.js";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import { ToastContainer } from "react-toastify";
+import { PersistGate } from "redux-persist/integration/react";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <ToastContainer />
     <Provider store={store}>
-      <RouterProvider router={router}>
-        <App />
-        <ToastContainer className="flex justify-center" />
-      </RouterProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider>
+          <RouterProvider router={router}>
+            <App />
+          </RouterProvider>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </StrictMode>
 );

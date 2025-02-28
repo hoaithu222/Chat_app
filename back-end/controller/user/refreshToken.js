@@ -5,6 +5,7 @@ export default async function refreshToken(request, response) {
     try {
         const refreshToken = request.cookies.refreshToken || request?.headers?.authorization?.split("")[1];
 
+
         if (!refreshToken) {
             return response.status(401).json({
                 message: "Không có refresh token",

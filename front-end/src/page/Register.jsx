@@ -13,6 +13,7 @@ import uploadImage from "../utils/uploadImage";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../utils/Axios";
 import SummaryApi from "../common/SummaryApi";
+import colors from "../style/colors";
 
 export default function Register() {
   const [data, setData] = useState({
@@ -84,8 +85,7 @@ export default function Register() {
         profile_pic: "",
       });
     } catch (error) {
-      console.error(error);
-      toast.error("Đã xảy ra lỗi khi đăng kí");
+      toast.error(error.response.data.message);
     } finally {
       setLoading(false);
     }
@@ -93,20 +93,24 @@ export default function Register() {
 
   return (
     <div className="mx-auto container min-h-screen flex items-center justify-center">
-      <div className="shadow-2xl shadow-slate-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl ">
+      <div className="shadow-2xl shadow-slate-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl bg-white">
         <div className="p-2">
-          <h2 className="text-red-300 font-semibold text-xl sm:text-2xl md:text-3xl">
+          <h2
+            className={`${colors.textColors.gradientLimeToPink}  font-semibold text-xl sm:text-2xl md:text-3xl`}
+          >
             Chào mừng bạn đến với chat !
           </h2>
           <FcLikePlaceholder className="text-2xl mx-auto sm:text-3xl md:text-4xl lg:text-5xl" />
-          <p className="text-transparent text-center bg-clip-text bg-gradient-to-br from-rose-500 to-purple-300 text-base sm:text-lg md:text-xl lg:text-2xl">
+          <p
+            className={`text-transparent text-center ${colors.textColors.gradientCyanToLime} text-base sm:text-lg md:text-xl lg:text-2xl`}
+          >
             Hãy tạo tài khoản để tiếp tục
           </p>
         </div>
         <div className="mt-2">
           <form
             onSubmit={handleSubmit}
-            className="bg-white p-4 shadow-lg rounded-lg shadow-red-50 hover:shadow-red-100"
+            className="bg-white p-4  rounded-lg  hover:shadow-red-100"
           >
             <div className="space-y-2 md:space-y-3 lg:space-y-4 flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
               <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 relative rounded-full overflow-hidden">
@@ -117,7 +121,7 @@ export default function Register() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <FaUserCircle className="w-full h-full object-cover text-pink-300" />
+                  <FaUserCircle className="w-full h-full object-cover text-pink-200" />
                 )}
                 <label
                   htmlFor="image"
@@ -139,6 +143,7 @@ export default function Register() {
                   onChange={handleUpload}
                   disabled={loadingUpload}
                   accept="image/jpeg,image/png,image/gif,image/webp"
+                  required
                 />
               </div>
             </div>
@@ -151,6 +156,7 @@ export default function Register() {
               icon={
                 <FcApproval className="text-1xl sm:text-2xl md:text-3xl lg:text-4xl" />
               }
+              required={true}
             />
             <InputFile
               type="email"
@@ -162,6 +168,7 @@ export default function Register() {
               icon={
                 <FcInvite className="text-1xl sm:text-2xl md:text-3xl lg:text-4xl" />
               }
+              required={true}
             />
             <InputPassword
               name="password"
@@ -172,10 +179,11 @@ export default function Register() {
               icon={
                 <FcBiohazard className="ml-1 text-1xl sm:text-2xl md:text-3xl lg:text-4xl" />
               }
+              required={true}
             />
             <button
               type="submit"
-              className="px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2 rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white bg-red-300 mx-auto flex items-center justify-center"
+              className={`px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2  rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white ${colors.gradients.pinkToPurple}  mx-auto flex items-center justify-center`}
               disabled={loadingUpload}
             >
               {loading ? "Loading...." : "Đăng kí"}

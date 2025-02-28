@@ -6,22 +6,29 @@ export default function InputFile({
   icon,
   id,
   onChange,
+  required = false,
 }) {
   return (
-    <div className="space-y-2 md:space-y-3 lg:space-y-4">
-      <label htmlFor={id} className="text-base sm:text-xl text-gray-400">
-        {label} :
+    <div className="space-y-2">
+      <label
+        htmlFor={id}
+        className="text-sm font-medium text-gray-700 flex items-center"
+      >
+        {label} {required && <span className="text-red-500 ml-1">*</span>}
       </label>
-      <div className="flex gap-1 sm:gap-2 items-center border-2 border-pink-200 overflow-hidden rounded-lg focus:border-pink-300">
-        {icon}
-        <input
-          type={type}
-          name={name}
-          id={id}
-          placeholder={placeholder}
-          className="outline-none bg-transparent text-base sm:text-lg p-2 w-full"
-          onChange={onChange}
-        />
+      <div className="relative group">
+        <div className="flex items-center border-2 border-pink-200 rounded-lg overflow-hidden transition-all focus-within:border-pink-400 focus-within:ring-2 focus-within:ring-pink-100">
+          <span className="pl-3 text-gray-500">{icon}</span>
+          <input
+            type={type}
+            name={name}
+            id={id}
+            placeholder={placeholder}
+            className="outline-none bg-transparent p-3 w-full text-gray-800"
+            onChange={onChange}
+            required
+          />
+        </div>
       </div>
     </div>
   );

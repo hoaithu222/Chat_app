@@ -10,12 +10,14 @@ export default async function updateUserDetails(request, res) {
                 success: false,
             })
         }
-        const { name, profile_pic } = request.body;
+        const { name, profile_pic, bio, cover_photo } = request.body;
         const updateUser = await UserModel.updateOne({
             _id: userId
         }, {
             name,
-            profile_pic
+            profile_pic,
+            bio,
+            cover_photo
         })
         const userInfo = await UserModel.findOne({ _id: userId });
         return res.status(201).json({
