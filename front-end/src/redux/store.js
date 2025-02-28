@@ -7,6 +7,7 @@ import { combineReducers } from "redux";
 const persistConfig = {
     key: "root",
     storage,
+    blacklist: ["socketConnection"],
 };
 
 const rootReducer = combineReducers({

@@ -31,7 +31,7 @@ export default function ListConversation() {
         ) : (
           <div className="mt-10 flex justify-center">
             <p className="text-lg md:text-xl lg:text-2xl">
-              <GoArrowUpLeft className="text-7xl md:text-8xl lg:text-9xl text-blue-500" />
+              <GoArrowUpLeft className="text-5xl md:text-6xl lg:text-7xl text-blue-500" />
               Hãy kết bạn và cùng trò chuyện,....
             </p>
           </div>

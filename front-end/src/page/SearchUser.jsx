@@ -6,11 +6,15 @@ import { FaUser } from "react-icons/fa";
 import Axios from "../utils/Axios";
 import SummaryApi from "../common/SummaryApi";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function SearchUser() {
   const [search, setSearch] = useState("");
+  const userId = useSelector((state) => state.user._id);
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const searchUser = async () => {
     if (search.trim() === "") {
@@ -25,7 +29,8 @@ export default function SearchUser() {
           search,
         },
       });
-      setResult(response.data.data);
+      const result = response.data.data.filter((user) => user._id != userId);
+      setResult(result);
       console.log(response);
     } catch (error) {
       toast.error(
@@ -102,7 +107,7 @@ export default function SearchUser() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {result.map((user) => (
                 <div
-                  key={user.id}
+                  key={user._id}
                   className="flex items-center p-3 border rounded-lg shadow-md hover:bg-gray-50 hover:text-gray-600 transition-colors"
                 >
                   <div className="flex-shrink-0 mr-3">
@@ -125,7 +130,7 @@ export default function SearchUser() {
                   <button
                     className="ml-2 px-3 py-1 bg-gradient-to-r from-pink-500 to-blue-500 text-white rounded-md hover:from-indigo-600 hover:to-blue-600"
                     onClick={() => {
-                      toast.success(`Kết bạn  ${user.name}`);
+                      navigate(`/${user._id}`);
                     }}
                   >
                     Nhắn tin

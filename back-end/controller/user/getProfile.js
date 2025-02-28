@@ -4,7 +4,7 @@ import { UserModel } from "../../models/UserModel.js";
 export default async function getProfile(request, response) {
     try {
         const userId = request.userId;
-        const user = await UserModel.findById(userId);
+        const user = await UserModel.findById(userId).select('-password -refreshToken');
         if (!user) {
             return response.status(400).json({
                 message: "Lỗi khi lấy thông tin user",

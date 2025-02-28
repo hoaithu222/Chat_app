@@ -1,8 +1,10 @@
 import { FaFacebookMessenger } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
+
 import colors from "../style/colors";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="shadow-lg w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
       <div className="flex flex-col items-center justify-center h-96 p-8 text-center">
@@ -21,7 +23,12 @@ export default function Home() {
           Hãy chọn người dùng để bắt đầu cuộc trò chuyện mới
         </p>
         <div className="w-full max-w-xs">
-          <button className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+          <button
+            className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+            onClick={() => {
+              navigate("/search-user");
+            }}
+          >
             Tìm kiếm bạn bè
           </button>
         </div>
