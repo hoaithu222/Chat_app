@@ -138,7 +138,7 @@ export default function SearchUser() {
                   <button
                     className="ml-2 px-3 py-1 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-md hover:from-indigo-600 hover:to-blue-600"
                     onClick={() => {
-                      toast.success(`Kết bạn  ${user.name}`);
+                      // toast.success(`Kết bạn  ${user.name}`);
                     }}
                   >
                     Kết bạn
