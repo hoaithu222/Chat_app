@@ -41,10 +41,10 @@ export default function UserMenu({ onClose }) {
 
   return (
     <div
-      className={` shadow-2xl rounded-md  w-[165px] p-1 ${colors.gradients.frostToFlame}`}
+      className={`z-50 relative shadow-2xl rounded-md  w-[165px] p-1 ${colors.gradients.frostToFlame}`}
     >
       <div className="flex justify-end " onClick={onClose}>
-        <IoMdClose className="text-2xl lg:text-3xl text-red-400 hover:text-red-600 cursor-pointer " />
+        <IoMdClose className="text-2xl lg:text-3xl text-white hover:text-red-200 cursor-pointer " />
       </div>
       <div className="flex flex-col w-full text-white cursor-pointer">
         <div

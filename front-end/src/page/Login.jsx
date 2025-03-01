@@ -1,39 +1,26 @@
-import {
-  FcBiohazard,
-  FcCheckmark,
-  FcInvite,
-  FcLikePlaceholder,
-} from "react-icons/fc";
-import { MdDriveFileRenameOutline } from "react-icons/md";
-import InputFile from "../components/InputFile";
-import InputPassword from "../components/InputPassword";
+import { FcBiohazard, FcInvite, FcLikePlaceholder } from "react-icons/fc";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import Axios from "../utils/Axios";
 import SummaryApi from "../common/SummaryApi";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import fetchUser from "../utils/fetchUser";
-import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
+import InputFile from "../components/InputFile";
+import InputPassword from "../components/InputPassword";
 import colors from "../style/colors";
 
 export default function Login() {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const [data, setData] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    setData((prev) => ({ ...prev, [name]: value }));
   };
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,17 +30,13 @@ export default function Login() {
     }
     setLoading(true);
     try {
-      const response = await Axios({
-        ...SummaryApi.login,
-        data,
-      });
+      const response = await Axios({ ...SummaryApi.login, data });
       if (!response) {
         toast.error("Đăng nhập không thành công");
       }
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("refreshToken", response.data.refreshToken);
       const user = await fetchUser();
-      console.log(user);
       dispatch(setUser(user.data.data));
       toast.success("Đăng nhập thành công");
       navigate("/");
@@ -65,69 +48,46 @@ export default function Login() {
   };
 
   return (
-    <div className="mx-auto container min-h-screen flex items-center justify-center">
-      <div
-        className={`shadow-2xl shadow-slate-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl bg-white `}
-      >
-        <div className="p-2">
-          <h2
-            className={`${colors.textColors.gradientLimeToPink}  font-semibold text-xl sm:text-2xl md:text-3xl`}
-          >
-            Chào mừng bạn đến với chat !
+    <div className="flex items-center justify-center min-h-screen p-6">
+      <div className="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full transform transition duration-300 hover:shadow-2xl">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-lime-400 to-pink-500">
+            Chào mừng bạn!
           </h2>
-          <FcLikePlaceholder className="text-2xl mx-auto sm:text-3xl md:text-4xl lg:text-5xl" />
-          <p
-            className={`text-transparent text-center ${colors.textColors.gradientCyanToLime} text-base sm:text-lg md:text-xl lg:text-2xl`}
+          <FcLikePlaceholder className="text-4xl mx-auto mt-2" />
+          <p className="text-lg text-gray-600 mt-2">Hãy đăng nhập</p>
+        </div>
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <InputFile
+            type="email"
+            name="email"
+            placeholder="Nhập email"
+            label="Email"
+            onChange={handleChange}
+            icon={<FcInvite className="text-2xl" />}
+            required
+          />
+          <InputPassword
+            name="password"
+            placeholder="Nhập mật khẩu"
+            label="Mật khẩu"
+            onChange={handleChange}
+            icon={<FcBiohazard className="text-2xl" />}
+            required
+          />
+          <button
+            className="w-full py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 shadow-md transition duration-300"
+            disabled={loading}
           >
-            Hãy đăng nhập
-          </p>
-        </div>
-        <div className="mt-2">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-4  rounded-lg hover:shadow-red-100"
-          >
-            <InputFile
-              type="email"
-              name="email"
-              placeholder="Vui lòng nhập email"
-              label="Email"
-              onChange={handleChange}
-              id="email"
-              icon={
-                <FcInvite className=" text-1xl sm:text-2xl md:text-3xl lg:text-4xl" />
-              }
-              required={true}
-            />
-            <InputPassword
-              name="password"
-              placeholder="Vui lòng nhập mật khẩu"
-              label="Mật khẩu"
-              onChange={handleChange}
-              id="password"
-              icon={
-                <FcBiohazard className="ml-1 text-1xl sm:text-2xl md:text-3xl lg:text-4xl" />
-              }
-              required={true}
-            />
-            <button
-              className={`px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2  rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white ${colors.gradients.pinkToPurple}  mx-auto flex items-center justify-center`}
-            >
-              {loading ? "Loading...." : "Đăng nhập"}
-            </button>
-          </form>
-        </div>
-        <div className="mt-3">
-          <p className="text-gray-400 text-base sm:text-lg p-2 md:p-3">
-            Nếu bạn chưa có tài khoản!
-            <Link
-              to="/register"
-              className="text-green-300 font-semibold text-lg"
-            >
-              Đăng kí
-            </Link>
-          </p>
-        </div>
+            {loading ? "Đang xử lý..." : "Đăng nhập"}
+          </button>
+        </form>
+        <p className="text-center text-gray-500 mt-4">
+          Chưa có tài khoản?
+          <Link to="/register" className="text-blue-500 font-semibold ml-1">
+            Đăng ký
+          </Link>
+        </p>
       </div>
     </div>
   );

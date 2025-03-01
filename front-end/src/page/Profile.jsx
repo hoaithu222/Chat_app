@@ -97,15 +97,15 @@ export default function Profile() {
   return (
     <div className="shadow-lg w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
       <div className="p-2 md:p-3 lg:p-4">
-        <div className="flex items-center justify-between border-b-2 pb-2 border-sky-200">
+        <div className="flex items-center justify-between border-b-2 pb-1 lg:pb-2 border-sky-200">
           <h2
-            className={`text-2xl md:text-3xl lg:text-4xl font-medium md:font-semibold ${colors.textColors.gradientGreenToPurple} `}
+            className={`text-lg md:text-xl lg:text-2xl font-medium md:font-semibold ${colors.textColors.gradientGreenToPurple} `}
           >
             Thông tin của tôi
           </h2>
           {!isEdit && (
             <div
-              className={`${colors.button.large} ${colors.button.gradientRedToYellow} cursor-pointer hover:opacity-90 transition-all duration-300 transform hover:scale-105`}
+              className={`${colors.button.btn1} ${colors.button.gradientRedToYellow} cursor-pointer hover:opacity-90 transition-all duration-300 transform hover:scale-105`}
               onClick={() => setIsEdit(true)}
             >
               Thay đổi thông tin
@@ -113,140 +113,154 @@ export default function Profile() {
           )}
         </div>
       </div>
-      <div className="relative">
-        <div className="w-full p-4 sm:h-60 md:h-72 lg:h-80 rounded-lg overflow-hidden relative">
-          <img
-            src={data.cover_photo ? data.cover_photo : image}
-            alt="cover_photo"
-            className="w-full h-full object-cover rounded-lg "
-          />
+      {loading ? (
+        <div>
+          <div className=" space-x-3 space-y-4 animate-pulse p-5">
+            <div className="w-full p-4 h-36 sm:h-40 md:h-56 lg:h-64 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
 
-          {isEdit && (
-            <div
-              className={`absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 rounded-lg`}
-            >
-              <label
-                htmlFor="cover-image"
-                className="flex items-center justify-center gap-2 px-4 py-2 bg-white bg-opacity-80 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300 shadow-lg"
-              >
-                <FaCamera className="text-pink-500" />
-                <span className="font-medium text-gray-800">
-                  {loadingCoverUpload
-                    ? "Đang tải..."
-                    : data?.cover_photo
-                    ? "Thay đổi ảnh bìa"
-                    : "Thêm ảnh bìa"}
-                </span>
-              </label>
-              <input
-                type="file"
-                id="cover-image"
-                name="cover_photo"
-                className="hidden"
-                onChange={(e) => handleUpload(e, "cover")}
-                disabled={loadingCoverUpload}
-                accept="image/jpeg,image/png,image/gif,image/webp"
-              />
+            <div className="space-y-3">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full bg-gray-300 dark:bg-gray-600 "></div>
+              <div className="h-5 bg-gray-300 dark:bg-gray-600 w-2/5 rounded"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-600 w-3/5 mt-2 rounded"></div>
             </div>
-          )}
+          </div>
         </div>
+      ) : (
+        <div className="relative">
+          <div className="w-full p-4 h-36 sm:h-40 md:h-56 lg:h-64 rounded-lg overflow-hidden relative">
+            <img
+              src={data.cover_photo ? data.cover_photo : image}
+              alt="cover_photo"
+              className="w-full h-full object-cover rounded-lg"
+            />
 
-        <div
-          className={`flex flex-col md:flex-row items-start bg-white rounded-lg mx-4 -mt-12 relative z-10 ${
-            isEdit ? "shadow-xl" : "shadow-md"
-          } p-4 transition-all duration-300`}
-        >
-          <div className="space-y-2 md:space-y-3 p-5 flex flex-col md:flex-row w-full gap-6">
-            <div className="flex flex-col items-center">
+            {isEdit && (
               <div
-                className={`relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 overflow-hidden rounded-full p-1 ${colors.gradients.pinkToPurple}`}
+                className={`absolute inset-0 flex items-center justify-center bg-black bg-opacity-10 rounded-lg`}
               >
-                {data?.profile_pic ? (
-                  <img
-                    src={data.profile_pic}
-                    alt={data.name || "Avatar"}
-                    className="w-full h-full rounded-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                ) : (
-                  <FaUserCircle className="w-full h-full text-gray-200" />
-                )}
-
-                {isEdit && (
-                  <label
-                    htmlFor="profile-image"
-                    className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1 p-2 text-white bg-gradient-to-br from-sky-400 to-purple-400 cursor-pointer hover:from-sky-500 hover:to-purple-500 transition-all duration-300"
-                  >
-                    <FaCamera className="mr-1" />
-                    {loadingUpload
+                <label
+                  htmlFor="cover-image"
+                  className="flex items-center justify-center gap-2 px-4 py-2 bg-white bg-opacity-80 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300 shadow-lg"
+                >
+                  <FaCamera className="text-pink-500" />
+                  <span className="font-medium text-gray-800">
+                    {loadingCoverUpload
                       ? "Đang tải..."
-                      : data?.profile_pic
-                      ? "Thay đổi"
-                      : "Thêm ảnh"}
-                  </label>
-                )}
-
+                      : data?.cover_photo
+                      ? "Thay đổi ảnh bìa"
+                      : "Thêm ảnh bìa"}
+                  </span>
+                </label>
                 <input
                   type="file"
-                  id="profile-image"
-                  name="profile_pic"
+                  id="cover-image"
+                  name="cover_photo"
                   className="hidden"
-                  onChange={(e) => handleUpload(e, "profile")}
-                  disabled={loadingUpload}
+                  onChange={(e) => handleUpload(e, "cover")}
+                  disabled={loadingCoverUpload}
                   accept="image/jpeg,image/png,image/gif,image/webp"
                 />
               </div>
-            </div>
+            )}
+          </div>
 
-            <div className="flex-1 w-full space-y-4">
-              <InputProfile
-                label={"Tên người dùng"}
-                isEdit={isEdit}
-                data={data.name}
-                name="name"
-                setData={setData}
-                Icon={FaCannabis}
-              />
+          <div
+            className={`flex flex-col md:flex-row items-start bg-white rounded-lg mx-4 -mt-12 relative z-10 ${
+              isEdit ? "shadow-xl" : "shadow-md"
+            } p-4 transition-all duration-300`}
+          >
+            <div className="space-y-2 md:space-y-3 p-5 flex flex-col md:flex-row w-full gap-6">
+              <div className="flex flex-col items-center">
+                <div
+                  className={`relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 overflow-hidden rounded-full p-1 ${colors.gradients.pinkToPurple}`}
+                >
+                  {data?.profile_pic ? (
+                    <img
+                      src={data.profile_pic}
+                      alt={data.name || "Avatar"}
+                      className="w-full h-full rounded-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-full h-full text-gray-200" />
+                  )}
 
-              <div className="flex items-center gap-2 p-2">
-                <span className="text-lg md:text-xl font-medium text-gray-700">
-                  Email:
-                </span>
-                <h3 className="text-xl md:text-2xl text-gray-600">
-                  {user.email}
-                </h3>
+                  {isEdit && (
+                    <label
+                      htmlFor="profile-image"
+                      className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1 p-2 text-white bg-gradient-to-br from-sky-400 to-purple-400 cursor-pointer hover:from-sky-500 hover:to-purple-500 transition-all duration-300"
+                    >
+                      <FaCamera className="mr-1" />
+                      {loadingUpload
+                        ? "Đang tải..."
+                        : data?.profile_pic
+                        ? "Thay đổi"
+                        : "Thêm ảnh"}
+                    </label>
+                  )}
+
+                  <input
+                    type="file"
+                    id="profile-image"
+                    name="profile_pic"
+                    className="hidden"
+                    onChange={(e) => handleUpload(e, "profile")}
+                    disabled={loadingUpload}
+                    accept="image/jpeg,image/png,image/gif,image/webp"
+                  />
+                </div>
               </div>
 
-              <InputProfile
-                label={"Tiểu sử"}
-                isEdit={isEdit}
-                name="bio"
-                data={data.bio}
-                setData={setData}
-                Icon={FaEarlybirds}
-              />
+              <div className="flex-1 w-full space-y-4">
+                <InputProfile
+                  label={"Tên người dùng"}
+                  isEdit={isEdit}
+                  data={data.name}
+                  name="name"
+                  setData={setData}
+                  Icon={FaCannabis}
+                />
+
+                <div className="flex items-center gap-2 p-2">
+                  <span className="text-base md:text-lg font-medium text-gray-700">
+                    Email:
+                  </span>
+                  <h3 className="text-lg md:text-xl text-gray-600">
+                    {user.email}
+                  </h3>
+                </div>
+
+                <InputProfile
+                  label={"Tiểu sử"}
+                  isEdit={isEdit}
+                  name="bio"
+                  data={data.bio}
+                  setData={setData}
+                  Icon={FaEarlybirds}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {isEdit && (
-          <div className="mt-5 flex items-center justify-center gap-4 p-4">
-            <button
-              className={`${colors.button.btn2} ${colors.button.danger} flex items-center gap-2 transform hover:scale-105 transition-all duration-300`}
-              onClick={handleCancel}
-            >
-              <FaTimesCircle />
-              Hủy
-            </button>
-            <button
-              className={`${colors.button.btn2} ${colors.button.gradientVioletToYellow} flex items-center gap-2 transform hover:scale-105 transition-all duration-300`}
-              onClick={handleSaveChanges}
-            >
-              <IoIosSave />
-              Lưu thay đổi
-            </button>
-          </div>
-        )}
-      </div>
+          {isEdit && (
+            <div className="mt-2 md:mt-3 lg:mt-5 flex items-center justify-center gap-4 p-4">
+              <button
+                className={`${colors.button.btn1} ${colors.button.danger} flex items-center gap-2 transform hover:scale-105 transition-all duration-300`}
+                onClick={handleCancel}
+              >
+                <FaTimesCircle />
+                Hủy
+              </button>
+              <button
+                className={`${colors.button.btn1} ${colors.button.gradientVioletToYellow} flex items-center gap-2 transform hover:scale-105 transition-all duration-300`}
+                onClick={handleSaveChanges}
+              >
+                <IoIosSave />
+                Lưu thay đổi
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

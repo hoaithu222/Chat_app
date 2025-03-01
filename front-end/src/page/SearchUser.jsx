@@ -17,19 +17,15 @@ export default function SearchUser() {
   const navigate = useNavigate();
 
   const searchUser = async () => {
-    if (search.trim() === "") {
-      setResult([]);
-      return;
-    }
     setLoading(true);
     try {
       const response = await Axios({
         ...SummaryApi.findUser,
         data: {
-          search,
+          search: search.trim() === "" ? null : search,
         },
       });
-      const result = response.data.data.filter((user) => user._id != userId);
+      const result = response.data.data.filter((user) => user._id !== userId);
       setResult(result);
       console.log(response);
     } catch (error) {
@@ -42,15 +38,20 @@ export default function SearchUser() {
     }
   };
 
+  // Khi component mount, tải danh sách người dùng
+  useEffect(() => {
+    searchUser();
+  }, []);
+
+  // Thực hiện tìm kiếm khi người dùng nhập
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (search.trim() !== "") {
-        searchUser();
-      }
+      searchUser();
     }, 500);
 
     return () => clearTimeout(timer);
   }, [search]);
+
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       searchUser();
@@ -59,17 +60,17 @@ export default function SearchUser() {
 
   return (
     <div className="shadow-lg w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
-      <div className="p-3">
-        <div className={`flex items-center gap-2 justify-center p-2`}>
+      <div className="p-1 md:p-2 lg:p-3">
+        <div className={`flex items-center gap-1 md:gap-2 justify-center p-1 `}>
           <div
-            className={`${colors.gradients.indigoToPink} flex p-2 border-2 rounded-full w-[60%]`}
+            className={`${colors.gradients.indigoToPink} flex p-1  lg:p-2 border-2 rounded-full w-[50%] lg:w-[60%]`}
           >
-            <BsSearchHeart className="text-2xl md:text-3xl lg:text-4xl text-red-400" />
+            <BsSearchHeart className="text-xl md:text-2xl lg:text-3xl text-red-400" />
             <input
               type="text"
               name="search"
               placeholder="Nhập tên người dùng cần tìm kiếm"
-              className="outline-none bg-transparent text-xl md:text-2xl lg:text-3xl w-full"
+              className="outline-none bg-transparent text-sm sm:text-lg md:text-xl  w-full"
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
@@ -79,47 +80,60 @@ export default function SearchUser() {
           </div>
           <button
             onClick={searchUser}
-            className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-5 py-3 rounded-full hover:from-pink-600 hover:to-purple-600 transition-all"
+            className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-3 py-1   lg:px-4 lg:py-2 rounded-full hover:from-pink-600 hover:to-purple-600 transition-all"
             disabled={loading}
           >
             {loading ? "Đang tìm..." : "Tìm kiếm"}
           </button>
         </div>
       </div>
-      <div className="shadow-2xl p-2 border-2 m-3 rounded-lg h-[calc(100vh-150px)] overflow-y-auto">
+      <div className="shadow-2xl p-1 sm:p-2 border-2 m-3 rounded-lg h-[calc(100vh-130px)] overflow-y-auto">
         {search !== "" ? (
           <p className={`${colors.textColors.gradientIndigoToTeal} mb-4`}>
             Kết quả tìm kiếm: {result.length}
           </p>
         ) : (
           <p
-            className={`${colors.textColors.gradientAurora} text-lg md:text-xl lg:text-2xl`}
+            className={`${colors.textColors.gradientAurora} text-sm md:text-lg lg:text-xl mb-2 md:mb-3 lg:mb-4`}
           >
-            Vui lòng nhập tên để tìm kiếm
+            Danh sách người dùng ({result.length})
           </p>
         )}
-        <div className="space-y-2 sm:space-y-4 md:space-y-5 lg:space-y-7">
+        <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-5">
           {loading ? (
-            <div className="flex justify-center items-center mt-10">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 lg:gap-4">
+              {Array(20)
+                .fill(null)
+                .map((_, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center space-x-3 animate-pulse"
+                  >
+                    <div className="w-12 h-12 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                    <div className="flex-1">
+                      <div className="h-5 bg-gray-300 dark:bg-gray-600 w-3/5 rounded"></div>
+                      <div className="h-4 bg-gray-300 dark:bg-gray-600 w-4/5 mt-2 rounded"></div>
+                    </div>
+                  </div>
+                ))}
             </div>
-          ) : result.length > 0 && search !== "" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          ) : result.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 lg:gap-4">
               {result.map((user) => (
                 <div
                   key={user._id}
-                  className="flex items-center p-3 border rounded-lg shadow-md hover:bg-gray-50 hover:text-gray-600 transition-colors"
+                  className="flex items-center p-3 border rounded-lg shadow-md dark:hover:bg-slate-700 hover:bg-slate-200 dark:hover:text-white   hover:text-gray-600 transition-colors"
                 >
                   <div className="flex-shrink-0 mr-3">
                     {user.profile_pic ? (
                       <img
                         src={user.profile_pic}
                         alt={user.name}
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-8 h-8 md:w-10 md:h-10 lg:h-12 lg:w-12 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                        <FaUser className="text-gray-400" />
+                      <div className="w-8 h-8 md:w-10 md:h-10 lg:h-12 lg:w-12 rounded-full bg-gray-200 flex items-center justify-center">
+                        <FaUser className="text-gray-400 w-full h-full" />
                       </div>
                     )}
                   </div>
@@ -135,25 +149,17 @@ export default function SearchUser() {
                   >
                     Nhắn tin
                   </button>
-                  <button
-                    className="ml-2 px-3 py-1 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-md hover:from-indigo-600 hover:to-blue-600"
-                    onClick={() => {
-                      // toast.success(`Kết bạn  ${user.name}`);
-                    }}
-                  >
-                    Kết bạn
-                  </button>
                 </div>
               ))}
             </div>
-          ) : search !== "" ? (
-            <div className="flex justify-center items-center mt-20 flex-col">
-              <FaDropbox className="text-5xl md:text-6xl lg:text-8xl text-rose-300 animate-pulse text-center" />
+          ) : (
+            <div className="flex justify-center items-center mt-10 md:mt-14 lg:mt-20 flex-col">
+              <FaDropbox className="text-3xl md:text-4xl lg:text-5xl text-rose-300 animate-pulse text-center" />
               <p className="text-xl md:text-2xl lg:text-3xl">
-                Không tìm thấy người dùng thỏa mãn
+                Không tìm thấy người dùng
               </p>
             </div>
-          ) : null}
+          )}
         </div>
       </div>
     </div>

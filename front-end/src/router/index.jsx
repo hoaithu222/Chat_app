@@ -10,12 +10,18 @@ import PrivateRouter from "../Layout/PrivateRouter";
 import LayoutForm from "../Layout/LayoutForm";
 import Setting from "../page/Setting";
 import SearchUser from "../page/SearchUser";
+import { SocketProvider } from "../context/SocketProvider";
+const AppWithSocket = () => (
+  <SocketProvider>
+    <App />
+  </SocketProvider>
+);
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <PrivateRouter>
-        <App />
+        <AppWithSocket />
       </PrivateRouter>
     ),
     children: [

@@ -9,11 +9,12 @@ export default function HeaderConversation({ data }) {
       setDataUser(data);
     }
   }, [data]);
+
   return (
-    <div className="flex items-center justify-between border-b-2 border-gray-200 dark:border-gray-900 pb-3">
+    <div className="flex items-center justify-between border-b-2 border-gray-200 dark:border-gray-900 pb-1 md:pb-2 lg:pb-3">
       <div className="flex items-center gap-2">
         <div
-          className={`w-20 h-20 md:w-22 md:h-22 lg:w-24 lg:h-24 rounded-full p-1  ${colors.gradients.blueToPink} relative`}
+          className={`w-12 h-12 md:w-14 md:h-14 lg:w-18 lg:h-18 rounded-full p-0.5  ${colors.gradients.purpleToPinkBlur} relative`}
         >
           <img
             src={dataUser.profile_pic}
@@ -21,15 +22,15 @@ export default function HeaderConversation({ data }) {
             className="w-full h-full object-cover rounded-full"
           />
           {dataUser.online && (
-            <p className="w-2 h-2 md:w-3 md:h-3 lg:w-5 lg:h-5 bg-green-500 rounded-full absolute top-2 right-0"></p>
+            <p className="w-2 h-2 md:w-3 md:h-3 lg:w-4 lg:h-4 bg-green-500 rounded-full absolute bottom-0 right-0"></p>
           )}
         </div>
-        <h2 className="text-lg md:text-xl lg:text-2xl font-semibold">
+        <h2 className="text-base md:text-lg lg:text-xl font-semibold">
           {dataUser.name}
         </h2>
       </div>
       <div>
-        <FiMoreHorizontal className="text-4xl md:text-5xl lg:text-6xl text-purple-400" />
+        <FiMoreHorizontal className="text-2xl md:text-3xl lg:text-4xl text-purple-400" />
       </div>
     </div>
   );

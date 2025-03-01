@@ -7,7 +7,7 @@ const colors = {
         orangeToRed: "bg-gradient-to-r from-orange-400 to-red-500",
         tealToPurple: "bg-gradient-to-r from-teal-400 to-purple-600",
         sunset: "bg-gradient-to-r from-orange-300 via-red-300 to-pink-300",
-        frostToFlame: "bg-gradient-to-r from-blue-300 via-purple-400 to-red-500",
+        frostToFlame: "bg-gradient-to-r from-blue-300 via-purple-400 to-red-400",
         blueToFlame: "bg-gradient-to-r from-blue-400 via-purple-500 to-red-600",
         sunrise: "bg-gradient-to-r from-pink-400 via-orange-300 to-yellow-500",
         skyToOcean: "bg-gradient-to-r from-blue-400 to-cyan-500",
@@ -49,8 +49,8 @@ const colors = {
         small: "rounded-full px-2 py-1 text-sm transition duration-200 ease-in-out",
         medium: "rounded-full  px-3 py-1 md:px-5 md:py-1.5 lg:px-6 lg:py-2 text-xs lg:text-base transition duration-200 ease-in-out",
         large: "rounded-full px-9 py-3 text-lg transition duration-200 ease-in-out",
-        btn1: "rounded-full  px-3 py-1 md:px-5 md:py-1.5 lg:px-6 lg:py-2 text-xs lg:text-base transition duration-200 ease-in-out",
-        btn2: "rounded-full  px-5 py-2 lg:px-8 lg:py-3  md:text-md lg:text-lg transition duration-200 ease-in-out",
+        btn1: "rounded-full  px-3 py-1 md:px-4 md:py-1.5 lg:px-5 lg:py-2 text-xs lg:text-base transition duration-200 ease-in-out",
+        btn2: "rounded-full  px-5 py-2 lg:px-7 lg:py-3  md:text-md lg:text-lg transition duration-200 ease-in-out",
 
         // Các button gradient
         gradientBlueToPink: "bg-gradient-to-r from-blue-200 to-pink-200 hover:from-blue-300 hover:to-pink-300 active:from-blue-400 active:to-pink-400 text-white transition duration-200 ease-in-out",

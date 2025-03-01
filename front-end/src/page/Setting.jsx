@@ -23,14 +23,14 @@ export default function Setting() {
       <div className="p-5">
         <div className="flex border-b-2 pb-2">
           <h2
-            className={`text-2xl md:text-3xl lg:text-4xl font-medium md:font-semibold ${colors.textColors.gradientOceanWave}`}
+            className={`text-lg md:text-xl lg:text-2xl font-medium md:font-semibold ${colors.textColors.gradientOceanWave}`}
           >
             Tùy chọn
           </h2>
         </div>
         <div className="mt-2 space-y-3 md:space-y-5 dark:hover:text-gray-800">
           <div className="space-y-1 lg:space-y-2 border-b-2 pb-2 border-gray-200 hover:bg-white rounded-lg p-3 shadow-sm transition duration-300">
-            <p className="text-base md:text-lg lg:text-xl font-medium text-gray-400">
+            <p className="text-base md:text-lg  font-medium text-gray-400">
               Tài khoản
             </p>
             <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
@@ -44,7 +44,7 @@ export default function Setting() {
                 />
               </div>
               <div>
-                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">
+                <h3 className="text-lg md:text-xl  font-semibold">
                   {user.name}
                 </h3>
                 <p className="text-xs sm:text-base text-gray-400">
@@ -69,7 +69,7 @@ export default function Setting() {
                   )}
                 </div>
                 <div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-semibold">
+                  <h3 className="text-lg md:text-xl  font-semibold">
                     Chế độ tối
                   </h3>
                   <p className="text-xs sm:text-base text-gray-400">
@@ -96,12 +96,12 @@ export default function Setting() {
               </label>
             </div>
 
-            <div className="mt-4 flex items-center justify-between bg-gray-50 dark:bg-slate-700 p-3 rounded-lg">
+            <div className="mt-4 flex items-center justify-between bg-gray-50 dark:bg-slate-700 p-3 rounded-lg text-xs">
               <span className="font-medium text-gray-600">
                 Trạng thái hiện tại:
               </span>
               <span
-                className={`font-medium ${
+                className={`font-medium  ${
                   darkMode ? "text-indigo-600" : "text-orange-500"
                 }`}
               >

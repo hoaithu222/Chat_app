@@ -11,7 +11,7 @@ export default function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const socket = useSocket(); // Lấy socket từ Context
+  const socket = useSocket();
 
   console.log("user", user);
 
@@ -25,30 +25,26 @@ export default function App() {
     }
   }, [navigate]);
 
-  /*
-   socket connect
-  */
   useEffect(() => {
     if (!socket) return;
 
-    socket.on("onlineUser", (data) => {
+    socket.on("online user", (data) => {
       dispatch(setOnlineUser(data));
+      console.log(data);
     });
 
     return () => {
-      socket.off("onlineUser");
+      socket.off("online user");
     };
   }, [socket]);
 
   return (
-    <SocketProvider>
-      <div className="bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark p-2 h-screen overflow-hidden">
-        <div className="flex gap-4">
-          <Navbar />
-          <ListConversation />
-          <Outlet />
-        </div>
+    <div className="bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark p-2 h-screen overflow-hidden">
+      <div className="flex gap-4">
+        <Navbar />
+        <ListConversation socket={socket} />
+        <Outlet />
       </div>
-    </SocketProvider>
+    </div>
   );
 }

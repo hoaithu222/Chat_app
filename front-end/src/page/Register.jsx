@@ -92,13 +92,13 @@ export default function Register() {
   };
 
   return (
-    <div className="mx-auto container min-h-screen flex items-center justify-center">
+    <div className="mx-auto container min-h-screen flex items-center justify-center p-6 sm:p-2">
       <div className="shadow-2xl shadow-slate-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl bg-white">
         <div className="p-2">
           <h2
             className={`${colors.textColors.gradientLimeToPink}  font-semibold text-xl sm:text-2xl md:text-3xl`}
           >
-            Chào mừng bạn đến với chat !
+            Chào mừng bạn đến với chat!
           </h2>
           <FcLikePlaceholder className="text-2xl mx-auto sm:text-3xl md:text-4xl lg:text-5xl" />
           <p
@@ -111,6 +111,7 @@ export default function Register() {
           <form
             onSubmit={handleSubmit}
             className="bg-white p-4  rounded-lg  hover:shadow-red-100"
+            autoComplete="off"
           >
             <div className="space-y-2 md:space-y-3 lg:space-y-4 flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
               <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 relative rounded-full overflow-hidden">
@@ -143,7 +144,6 @@ export default function Register() {
                   onChange={handleUpload}
                   disabled={loadingUpload}
                   accept="image/jpeg,image/png,image/gif,image/webp"
-                  required
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ export default function Register() {
             />
             <button
               type="submit"
-              className={`px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2  rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white ${colors.gradients.pinkToPurple}  mx-auto flex items-center justify-center`}
+              className={`px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2 w-full  rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white ${colors.gradients.pinkToPurple}  mx-auto flex items-center justify-center`}
               disabled={loadingUpload}
             >
               {loading ? "Loading...." : "Đăng kí"}
@@ -191,9 +191,9 @@ export default function Register() {
           </form>
         </div>
         <div className="mt-3">
-          <p className="text-gray-400 text-base sm:text-lg p-2 md:p-3">
+          <p className="text-gray-400  p-2 md:p-3 ">
             Nếu bạn đã có tài khoản!
-            <Link to="/login" className="text-green-300 font-semibold text-lg">
+            <Link to="/login" className="text-green-500 font-semibold text-md">
               Đăng nhập
             </Link>
           </p>

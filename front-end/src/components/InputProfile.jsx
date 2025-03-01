@@ -9,7 +9,6 @@ export default function InputProfile({
   Icon,
   onChange,
 }) {
-  // Handle onChange properly if no custom handler is provided
   const handleChange = (e) => {
     if (onChange) {
       onChange(e);
@@ -24,7 +23,7 @@ export default function InputProfile({
   return (
     <div className="space-y-3">
       {isEdit && (
-        <label htmlFor={name} className="text-lg md:text-xl lg:text-2xl">
+        <label htmlFor={name} className="text-base md:text-lg lg:text-xl">
           {label}
         </label>
       )}
@@ -36,14 +35,14 @@ export default function InputProfile({
         }`}
       >
         {Icon && (
-          <Icon className="text-green-300 text-xl md:text-2xl lg:text-3xl" />
+          <Icon className="text-green-300 text-lg md:text-xl lg:text-2xl" />
         )}
         <input
           type="text"
           name={name}
           value={data || ""}
           id={name}
-          className="text-2xl md:text-3xl outline-none text-gray-600 w-full bg-transparent"
+          className="text-lg md:text-xl outline-none text-gray-600 w-full bg-transparent"
           onChange={handleChange}
           readOnly={!isEdit}
           disabled={!isEdit}

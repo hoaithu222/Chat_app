@@ -10,6 +10,8 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     const newSocket = io(import.meta.env.VITE_SERVER_API, {
+      transports: ["websocket", "polling"],
+      withCredentials: true,
       auth: {
         token: localStorage.getItem("accessToken"),
       },
