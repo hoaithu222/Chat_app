@@ -76,7 +76,7 @@ export default function MessagePage() {
 
   const groupMessagesByDate = () => {
     const grouped = {};
-    allMess.forEach((msg) => {
+    allMess?.forEach((msg) => {
       const date = moment(msg.createdAt).format("DD/MM/YYYY");
       if (!grouped[date]) {
         grouped[date] = [];
