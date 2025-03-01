@@ -94,7 +94,7 @@ export default function Register() {
   return (
     <div className="mx-auto container min-h-screen flex items-center justify-center p-6 sm:p-2">
       <div className="shadow-2xl shadow-slate-300 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl bg-white">
-        <div className="p-2">
+        <div className="p-1">
           <h2
             className={`${colors.textColors.gradientLimeToPink}  font-semibold text-xl sm:text-2xl md:text-3xl`}
           >
@@ -102,12 +102,12 @@ export default function Register() {
           </h2>
           <FcLikePlaceholder className="text-2xl mx-auto sm:text-3xl md:text-4xl lg:text-5xl" />
           <p
-            className={`text-transparent text-center ${colors.textColors.gradientCyanToLime} text-base sm:text-lg md:text-xl lg:text-2xl`}
+            className={`text-transparent text-xs md:text-base text-center ${colors.textColors.gradientCyanToLime}  sm:text-lg lg:text-lg`}
           >
             Hãy tạo tài khoản để tiếp tục
           </p>
         </div>
-        <div className="mt-2">
+        <div className="mt-1">
           <form
             onSubmit={handleSubmit}
             className="bg-white p-4  rounded-lg  hover:shadow-red-100"
@@ -183,7 +183,7 @@ export default function Register() {
             />
             <button
               type="submit"
-              className={`px-3 py-1 sm:px-4 sm:py-2 md:px-5 md:py-2 w-full  rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white ${colors.gradients.pinkToPurple}  mx-auto flex items-center justify-center`}
+              className={`py-3 w-full  rounded-md mt-4 sm:mt-5 md:mt-6 lg:mt-7 text-white ${colors.gradients.pinkToPurple}  mx-auto flex items-center justify-center`}
               disabled={loadingUpload}
             >
               {loading ? "Loading...." : "Đăng kí"}
@@ -191,7 +191,7 @@ export default function Register() {
           </form>
         </div>
         <div className="mt-3">
-          <p className="text-gray-400  p-2 md:p-3 ">
+          <p className="text-gray-500  p-2 md:p-3 text-center ">
             Nếu bạn đã có tài khoản!
             <Link to="/login" className="text-green-500 font-semibold text-md">
               Đăng nhập

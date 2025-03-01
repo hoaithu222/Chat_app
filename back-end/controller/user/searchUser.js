@@ -4,24 +4,21 @@ export default async function searchUser(req, res) {
     try {
         const { search } = req.body;
 
+        let users;
         if (!search || search.trim() === "") {
-            return res.status(400).json({
-                message: "Vui lòng nhập từ khóa tìm kiếm",
-                success: false,
-                error: true
-            });
+
+            users = await UserModel.find().sort({ createdAt: -1 }).limit(20);
+        } else {
+
+            const query = new RegExp(search, "i");
+            users = await UserModel.find({
+                $or: [
+                    { name: query },
+                    { email: query }
+                ]
+            }).limit(20);
         }
 
-
-        const query = new RegExp(search, "i");
-
-
-        const users = await UserModel.find({
-            $or: [
-                { name: query },
-                { email: query }
-            ]
-        }).limit(20);
         return res.status(200).json({
             message: "Lấy danh sách user thành công",
             data: users,

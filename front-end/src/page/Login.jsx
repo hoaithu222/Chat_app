@@ -76,7 +76,7 @@ export default function Login() {
             required
           />
           <button
-            className="w-full py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 shadow-md transition duration-300"
+            className="w-full py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 shadow-md transition duration-300"
             disabled={loading}
           >
             {loading ? "Đang xử lý..." : "Đăng nhập"}
