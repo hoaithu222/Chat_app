@@ -41,10 +41,10 @@ export default function UserMenu({ onClose }) {
 
   return (
     <div
-      className={`z-50 relative shadow-2xl rounded-md  w-[165px] p-1 ${colors.gradients.frostToFlame}`}
+      className={`z-50 relative shadow-2xl rounded-md  w-[125px] sm:w[130px] md:w-[140px]  lg:w-[165px] p-1 ${colors.gradients.frostToFlame}`}
     >
       <div className="flex justify-end " onClick={onClose}>
-        <IoMdClose className="text-2xl lg:text-3xl text-white hover:text-red-200 cursor-pointer " />
+        <IoMdClose className="text-xl md:text-2xl lg:text-3xl text-white hover:text-red-200 cursor-pointer " />
       </div>
       <div className="flex flex-col w-full text-white cursor-pointer">
         <div
@@ -54,8 +54,8 @@ export default function UserMenu({ onClose }) {
             navigate("/profile");
           }}
         >
-          <FaEdit className="text-2xl lg:text-3xl" />
-          <p className="text-lg lg:text-xl">Profile</p>
+          <FaEdit className="text-xl md:text-2xl lg:text-3xl" />
+          <p className="text-base md:text-lg lg:text-xl">Profile</p>
         </div>
         <div
           className="flex items-center justify-center gap-2 p-2 lg:p-3 hover:bg-pink-100 hover:text-sky-300 rounded-lg"
@@ -64,8 +64,8 @@ export default function UserMenu({ onClose }) {
             navigate("/setting");
           }}
         >
-          <IoSettingsOutline className="text-2xl lg:text-3xl" />
-          <p className="text-lg lg:text-xl">Cài đặt</p>
+          <IoSettingsOutline className="text-xl md:text-2xl lg:text-3xl" />
+          <p className="text-base md:text-lg lg:text-xl">Cài đặt</p>
         </div>
         <div
           className="flex items-center justify-center gap-2 p-2 lg:p-3 hover:bg-pink-100 hover:text-sky-300 rounded-lg"
@@ -74,8 +74,8 @@ export default function UserMenu({ onClose }) {
             onClose();
           }}
         >
-          <CiLogout className="text-2xl lg:text-3xl" />
-          <p className="text-lg lg:text-xl">Đăng xuất</p>
+          <CiLogout className="text-xl md:text-2xl lg:text-3xl" />
+          <p className="text-base md:text-lglg:text-xl">Đăng xuất</p>
         </div>
       </div>
     </div>

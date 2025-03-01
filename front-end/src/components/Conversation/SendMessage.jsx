@@ -109,9 +109,9 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
   };
 
   return (
-    <div className="border-t dark:border-gray-700 bg-white dark:bg-gray-900 p-6 rounded-b-lg relative">
+    <div className="border-t dark:border-gray-700 bg-white dark:bg-gray-900 px-1 py-3 md:p-4 lg:p-6 rounded-b-lg relative">
       {mediaUrl && (
-        <div className="absolute bottom-20 left-4 mb-2 z-10">
+        <div className="absolute bottom-20 left-2 md:left-3  lg:left-4 mb-2 z-10">
           <div className="relative inline-block">
             <button
               type="button"
@@ -124,18 +124,18 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
               <img
                 src={mediaUrl}
                 alt="Upload preview"
-                className="max-h-32 max-w-xs object-contain rounded-lg border shadow-lg bg-white dark:bg-gray-800 dark:border-gray-700"
+                className="max-h-20 sm:max-h-24 md:max-h-28 lg:max-h-32 max-w-xs object-contain rounded-lg border shadow-lg bg-white dark:bg-gray-800 dark:border-gray-700"
               />
             ) : (
               <video
                 src={mediaUrl}
                 controls
-                className="max-h-32 max-w-xs object-contain rounded-lg border shadow-lg bg-white dark:bg-gray-800 dark:border-gray-700"
+                className="max-h-20 sm:max-h-24 md:max-h-28 lg:max-h-32 max-w-xs object-contain rounded-lg border shadow-lg bg-white dark:bg-gray-800 dark:border-gray-700"
               />
             )}
             {(loadingUpload || loadingUploadVideo) && (
               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg">
-                <div className="loader h-8 w-8 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+                <div className="loader w-4 h-4 md:h-6 md:w-6 lg:h-8 lg:w-8 border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
               </div>
             )}
           </div>
@@ -143,12 +143,12 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
       )}
 
       <form
-        className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2"
+        className="flex items-center gap-1 lg:gap-2 bg-gray-100 dark:bg-gray-800 rounded-full px-2 py-1 lg:px-4 lg:py-2"
         onSubmit={handleSendMessage}
       >
-        <div className="flex space-x-2">
+        <div className="flex space-x-1 lg:space-x-2">
           <label htmlFor="image" className="cursor-pointer">
-            <LuImagePlus className="text-xl text-sky-500 dark:text-purple-400 hover:text-sky-600 dark:hover:text-purple-500 transition-colors" />
+            <LuImagePlus className="text-xl md:text-2xl lg:text-3xl text-sky-500 dark:text-purple-400 hover:text-sky-600 dark:hover:text-purple-500 transition-colors" />
           </label>
           <input
             type="file"
@@ -160,7 +160,7 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
           />
 
           <label htmlFor="video" className="cursor-pointer">
-            <FaRegFileVideo className="text-xl text-sky-500 dark:text-purple-400 hover:text-sky-600 dark:hover:text-purple-500 transition-colors" />
+            <FaRegFileVideo className="text-xl md:text-2xl lg:text-3xl text-sky-500 dark:text-purple-400 hover:text-sky-600 dark:hover:text-purple-500 transition-colors" />
           </label>
           <input
             type="file"
@@ -179,12 +179,12 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent border-none outline-none px-3 py-2 text-gray-800 dark:text-gray-200 placeholder-gray-500"
+          className="flex-1 bg-transparent border-none outline-none px-1 py-1.5 lg:px-3 lg:py-2 text-gray-800 dark:text-gray-200 placeholder-gray-500"
         />
 
         <button
           type="submit"
-          className={`p-2 rounded-full ${
+          className={`p-1 lg:p-2 rounded-full ${
             inputValue.trim() || mediaUrl
               ? "bg-sky-500 dark:bg-purple-600 hover:bg-sky-600 dark:hover:bg-purple-700"
               : "bg-gray-300 dark:bg-gray-700"

@@ -62,7 +62,7 @@ export default function Navbar() {
           </div>
         </div>
         {openMenu && (
-          <div className="absolute  bottom-0 left-20">
+          <div className="absolute  bottom-0 left-14 md:left-16 lg:left-20">
             <UserMenu onClose={() => setOpenMenu(false)} />
           </div>
         )}

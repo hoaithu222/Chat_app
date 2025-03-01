@@ -89,14 +89,14 @@ export default function MessagePage() {
   const groupedMessages = groupMessagesByDate();
 
   return (
-    <div className="shadow-xl w-4/6 rounded-xl border max-h-screen border-gray-200 overflow-hidden bg-white dark:bg-gray-800 p-1 lg:p-2">
+    <div className="shadow-xl  w-[100%] lg:w-4/6 rounded-xl border max-h-screen border-gray-200 overflow-hidden bg-white dark:bg-gray-800 p-1 lg:p-2">
       <div className="flex flex-col h-full">
         <div className="border-b border-gray-200 dark:border-gray-700">
           <HeaderConversation data={dataUser} />
         </div>
 
         <div
-          className="h-[calc(100vh-240px)] overflow-y-auto p-4 bg-gray-50 dark:bg-gray-900"
+          className="h-[calc(100vh-170px)] sm:h-[calc(100vh-180px)] md:h-[calc(100vh-190px)] lg:h-[calc(100vh-200px)] hidden-scrollbar overflow-y-auto p-4 bg-gray-50 dark:bg-gray-900"
           id="message-container"
         >
           <div
@@ -137,7 +137,7 @@ export default function MessagePage() {
                       )}
 
                       <div
-                        className={`flex flex-col max-w-md ${
+                        className={`flex flex-col w-40 sm:w-80 lg:w-96 ${
                           isSender ? "items-end" : "items-start"
                         }`}
                       >

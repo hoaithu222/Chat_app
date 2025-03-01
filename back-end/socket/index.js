@@ -128,16 +128,12 @@ io.on('connection', async (socket) => {
 
         const conversationMessageId = conversation?.message || []
 
-        // Use await here to ensure the update completes before proceeding
+
         await MessageModel.updateMany(
             { _id: { "$in": conversationMessageId }, msgByUserId: otherUserId },
             { "$set": { seen: true } }
         )
 
-        // Wait a small amount of time to ensure MongoDB has updated (optional)
-        // await new Promise(resolve => setTimeout(resolve, 100));
-
-        //send conversation
         const conversationSender = await getConversation(user?._id?.toString())
         const conversationReceiver = await getConversation(otherUserId)
 

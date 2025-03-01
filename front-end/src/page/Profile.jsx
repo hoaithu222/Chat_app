@@ -92,10 +92,9 @@ export default function Profile() {
     setData(user);
     setIsEdit(false);
   };
-  console.log(data);
 
   return (
-    <div className="shadow-lg w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
+    <div className="shadow-lg w-[100%] lg:w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
       <div className="p-2 md:p-3 lg:p-4">
         <div className="flex items-center justify-between border-b-2 pb-1 lg:pb-2 border-sky-200">
           <h2

@@ -27,7 +27,6 @@ export default function SearchUser() {
       });
       const result = response.data.data.filter((user) => user._id !== userId);
       setResult(result);
-      console.log(response);
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Có lỗi xảy ra khi tìm kiếm"
@@ -38,12 +37,10 @@ export default function SearchUser() {
     }
   };
 
-  // Khi component mount, tải danh sách người dùng
   useEffect(() => {
     searchUser();
   }, []);
 
-  // Thực hiện tìm kiếm khi người dùng nhập
   useEffect(() => {
     const timer = setTimeout(() => {
       searchUser();
@@ -59,7 +56,7 @@ export default function SearchUser() {
   };
 
   return (
-    <div className="shadow-lg w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
+    <div className="shadow-lg  w-[100%] lg:w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
       <div className="p-1 md:p-2 lg:p-3">
         <div className={`flex items-center gap-1 md:gap-2 justify-center p-1 `}>
           <div

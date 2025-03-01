@@ -1,19 +1,18 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ListConversation from "./components/ListConversation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import fetchUser from "./utils/fetchUser";
 import { useDispatch, useSelector } from "react-redux";
 import { setOnlineUser } from "./redux/userSlice";
-import { SocketProvider, useSocket } from "./context/SocketProvider";
+import { useSocket } from "./context/SocketProvider";
 
 export default function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const socket = useSocket();
-
-  console.log("user", user);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -30,7 +29,6 @@ export default function App() {
 
     socket.on("online user", (data) => {
       dispatch(setOnlineUser(data));
-      console.log(data);
     });
 
     return () => {
@@ -38,12 +36,29 @@ export default function App() {
     };
   }, [socket]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark p-2 h-screen overflow-hidden">
-      <div className="flex gap-4">
+      <div className="flex  gap-2 md:gap-3 lg:gap-4">
         <Navbar />
-        <ListConversation socket={socket} />
-        <Outlet />
+        {isMobile ? (
+          <Outlet />
+        ) : (
+          <>
+            <ListConversation />
+            <Outlet />
+          </>
+        )}
       </div>
     </div>
   );

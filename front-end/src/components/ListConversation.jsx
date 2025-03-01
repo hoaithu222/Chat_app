@@ -51,7 +51,7 @@ export default function ListConversation() {
   );
 
   return (
-    <div className="h-[calc(100vh-20px)]  w-[90%] lg:flex flex-col lg:w-[30%] p-2 sm:p-3 md:p-5 overflow-hidden rounded-xl shadow-lg shadow-red-200 border border-gray-100 dark:shadow-sky-200 dark:border-gray-700">
+    <div className="h-[calc(100vh-20px)]  w-[100%] lg:flex flex-col lg:w-[30%] p-2 sm:p-3 md:p-5 overflow-hidden rounded-xl shadow-lg shadow-red-200 border border-gray-100 dark:shadow-sky-200 dark:border-gray-700">
       <div className="flex items-center justify-between border-b-2 border-pink-100 dark:border-indigo-800 pb-2 mb-2 md:pb-3 md:mb-3">
         <h2
           className={`text-xl lg:text-2xl font-semibold ${colors.textColors.gradientLimeToPink}`}

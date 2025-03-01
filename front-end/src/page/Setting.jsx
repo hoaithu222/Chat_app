@@ -19,11 +19,11 @@ export default function Setting() {
   };
 
   return (
-    <div className="shadow-lg w-4/6 rounded-xl shadow-red-200 border-gray-200 border  overflow-hidden">
-      <div className="p-5">
+    <div className="shadow-lg  w-[100%] lg:w-4/6 rounded-xl shadow-red-200 border-gray-200 border  overflow-hidden">
+      <div className="p-1 sm:p-2 md:p-4 lg:p-5">
         <div className="flex border-b-2 pb-2">
           <h2
-            className={`text-lg md:text-xl lg:text-2xl font-medium md:font-semibold ${colors.textColors.gradientOceanWave}`}
+            className={`xs:text-base text-lg md:text-xl lg:text-2xl font-medium md:font-semibold ${colors.textColors.gradientOceanWave}`}
           >
             Tùy chọn
           </h2>
@@ -58,7 +58,7 @@ export default function Setting() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-10 h-10 md:w-12 md:h-12 p-2 ${
+                  className={`w-10 h-10 md:w-12 md:h-12 p-1 md:p-2 ${
                     darkMode ? "bg-indigo-600" : "bg-orange-400"
                   } rounded-full overflow-hidden cursor-pointer flex items-center justify-center transition-all duration-300`}
                 >
@@ -68,8 +68,8 @@ export default function Setting() {
                     <MdLightMode className="w-full h-full text-white" />
                   )}
                 </div>
-                <div>
-                  <h3 className="text-lg md:text-xl  font-semibold">
+                <div className="w-[65%]">
+                  <h3 className=" text-base sm:text-lg md:text-xl  font-semibold">
                     Chế độ tối
                   </h3>
                   <p className="text-xs sm:text-base text-gray-400">
