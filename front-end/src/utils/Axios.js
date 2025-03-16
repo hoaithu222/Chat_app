@@ -37,10 +37,9 @@ Axios.interceptors.response.use(
                         return Axios(originalRequest);
                     }
                 } catch (refreshError) {
-
                     localStorage.removeItem("accessToken");
                     localStorage.removeItem("refreshToken");
-
+                    window.location.href = "/login";
                     return Promise.reject(refreshError);
                 }
             }

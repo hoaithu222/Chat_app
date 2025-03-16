@@ -49,7 +49,7 @@ export default function App() {
 
   return (
     <div className="bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark p-2 h-screen overflow-hidden">
-      <div className="flex  gap-2 md:gap-3 lg:gap-4">
+      <div className="flex  gap-2 md:gap-3 lg:gap-4 relative h-full">
         <Navbar />
         {isMobile ? (
           <Outlet />

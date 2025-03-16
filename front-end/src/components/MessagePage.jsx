@@ -89,7 +89,7 @@ export default function MessagePage() {
   const groupedMessages = groupMessagesByDate();
 
   return (
-    <div className="shadow-xl  w-[100%] lg:w-4/6 rounded-xl border max-h-screen border-gray-200 overflow-hidden bg-white dark:bg-gray-800 p-1 lg:p-2">
+    <div className="shadow-xl  w-[100%] lg:w-4/6 rounded-xl border h-[calc(100%-70px)] sm:h-[100%] border-gray-200 overflow-hidden bg-white dark:bg-gray-800 p-1 lg:p-2">
       <div className="flex flex-col h-full">
         <div className="border-b border-gray-200 dark:border-gray-700">
           <HeaderConversation data={dataUser} />

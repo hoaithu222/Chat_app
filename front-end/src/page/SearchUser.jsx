@@ -56,7 +56,7 @@ export default function SearchUser() {
   };
 
   return (
-    <div className="shadow-lg  w-[100%] lg:w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
+    <div className="shadow-lg  w-[100%] h-[calc(100%-80px)] sm:h-[100%] lg:w-4/6 rounded-xl shadow-red-200 border-gray-200 border overflow-hidden">
       <div className="p-1 md:p-2 lg:p-3">
         <div className={`flex items-center gap-1 md:gap-2 justify-center p-1 `}>
           <div
@@ -84,7 +84,7 @@ export default function SearchUser() {
           </button>
         </div>
       </div>
-      <div className="shadow-2xl p-1 sm:p-2 border-2 m-3 rounded-lg h-[calc(100vh-130px)] overflow-y-auto">
+      <div className="shadow-2xl p-1 sm:p-2 border-2 m-3 rounded-lg  h-[calc(100vh-170px)] sm:h-[calc(100vh-130px)] overflow-y-auto">
         {search !== "" ? (
           <p className={`${colors.textColors.gradientIndigoToTeal} mb-4`}>
             Kết quả tìm kiếm: {result.length}

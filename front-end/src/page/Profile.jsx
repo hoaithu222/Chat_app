@@ -114,7 +114,7 @@ export default function Profile() {
       </div>
       {loading ? (
         <div>
-          <div className=" space-x-3 space-y-4 animate-pulse p-5">
+          <div className=" space-x-1 space-y-1 lg:space-x-3 lg:space-y-4 animate-pulse p-1 sm:p-3 lg:p-5">
             <div className="w-full p-4 h-36 sm:h-40 md:h-56 lg:h-64 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
 
             <div className="space-y-3">
@@ -126,7 +126,7 @@ export default function Profile() {
         </div>
       ) : (
         <div className="relative">
-          <div className="w-full p-4 h-36 sm:h-40 md:h-56 lg:h-64 rounded-lg overflow-hidden relative">
+          <div className="w-full p-1 sm:p-3 lg:p-4 h-36 sm:h-40 md:h-56 lg:h-64 rounded-lg overflow-hidden relative">
             <img
               src={data.cover_photo ? data.cover_photo : image}
               alt="cover_photo"
@@ -142,7 +142,7 @@ export default function Profile() {
                   className="flex items-center justify-center gap-2 px-4 py-2 bg-white bg-opacity-80 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300 shadow-lg"
                 >
                   <FaCamera className="text-pink-500" />
-                  <span className="font-medium text-gray-800">
+                  <span className="font-medium text-gray-800 text-xs sm:text-base">
                     {loadingCoverUpload
                       ? "Đang tải..."
                       : data?.cover_photo
@@ -168,10 +168,10 @@ export default function Profile() {
               isEdit ? "shadow-xl" : "shadow-md"
             } p-4 transition-all duration-300`}
           >
-            <div className="space-y-2 md:space-y-3 p-5 flex flex-col md:flex-row w-full gap-6">
+            <div className="sm:space-y-2 space-y-1 md:space-y-3 p-1 sm:p-3 lg:p-5 flex flex-col md:flex-row w-full gap-1 sm:gap-3 lg:gap-6">
               <div className="flex flex-col items-center">
                 <div
-                  className={`relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 overflow-hidden rounded-full p-1 ${colors.gradients.pinkToPurple}`}
+                  className={`relative w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 overflow-hidden rounded-full p-1 ${colors.gradients.pinkToPurple}`}
                 >
                   {data?.profile_pic ? (
                     <img
@@ -186,9 +186,9 @@ export default function Profile() {
                   {isEdit && (
                     <label
                       htmlFor="profile-image"
-                      className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1 p-2 text-white bg-gradient-to-br from-sky-400 to-purple-400 cursor-pointer hover:from-sky-500 hover:to-purple-500 transition-all duration-300"
+                      className="absolute bottom-0 left-0 text-xs sm:text-base right-0 flex items-center justify-center gap-1 p-1 lg:p-2 text-white bg-gradient-to-br from-sky-400 to-purple-400 cursor-pointer hover:from-sky-500 hover:to-purple-500 transition-all duration-300"
                     >
-                      <FaCamera className="mr-1" />
+                      <FaCamera className="mr-1 hidden sm:block" />
                       {loadingUpload
                         ? "Đang tải..."
                         : data?.profile_pic

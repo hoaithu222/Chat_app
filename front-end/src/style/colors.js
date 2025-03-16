@@ -49,7 +49,7 @@ const colors = {
         small: "rounded-full px-2 py-1 text-sm transition duration-200 ease-in-out",
         medium: "rounded-full  px-3 py-1 md:px-5 md:py-1.5 lg:px-6 lg:py-2 text-xs lg:text-base transition duration-200 ease-in-out",
         large: "rounded-full px-9 py-3 text-lg transition duration-200 ease-in-out",
-        btn1: "rounded-full  px-3 py-1 md:px-4 md:py-1.5 lg:px-5 lg:py-2 text-xs lg:text-base transition duration-200 ease-in-out",
+        btn1: "rounded-full  px-3 py-1.5 md:px-4 md:py-1.5 lg:px-5 lg:py-2 text-xs lg:text-base transition duration-200 ease-in-out",
         btn2: "rounded-full  px-5 py-2 lg:px-7 lg:py-3  md:text-md lg:text-lg transition duration-200 ease-in-out",
 
         // Các button gradient
