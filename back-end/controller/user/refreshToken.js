@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 
 export default async function refreshToken(request, response) {
     try {
-        const refreshToken = request.cookies.refreshToken || request?.headers?.authorization?.split("")[1];
+        const refreshToken = request.cookies.refreshToken || request?.headers?.authorization?.split(" ")[1];
 
 
         if (!refreshToken) {
@@ -23,7 +23,7 @@ export default async function refreshToken(request, response) {
             });
         }
 
-        jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET_KEY, (err, decoded) => {
+        jwt.verify(refreshToken, process.env.JWT_SECRET_KEY, (err, decoded) => {
             if (err) {
                 return response.status(403).json({
                     message: "Refresh token không hợp lệ hoặc đã hết hạn",
@@ -34,7 +34,7 @@ export default async function refreshToken(request, response) {
 
 
             const newAccessToken = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET_KEY, {
-                expiresIn: '15m',
+                expiresIn: '1h',
             });
 
             return response.status(200).json({

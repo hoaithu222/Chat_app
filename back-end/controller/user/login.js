@@ -29,11 +29,11 @@ export default async function login(request, response) {
             email: user.email,
         };
         const accessToken = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {
-            expiresIn: '1d',
+            expiresIn: '1h',
         });
 
 
-        const refreshToken = jwt.sign(tokenData, process.env.JWT_REFRESH_SECRET_KEY, {
+        const refreshToken = jwt.sign(tokenData, process.env.JWT_SECRET_KEY, {
             expiresIn: '7d',
         });
 

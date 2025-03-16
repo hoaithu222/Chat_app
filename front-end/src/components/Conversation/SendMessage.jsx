@@ -13,7 +13,6 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
   const [mediaUrl, setMediaUrl] = useState(null);
   const [mediaType, setMediaType] = useState(null);
 
-  // Sync với props message khi cần
   useEffect(() => {
     if (message) {
       setInputValue(message.text || "");
@@ -84,20 +83,21 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
     if (e) e.preventDefault();
 
     if (inputValue.trim() || mediaUrl) {
-      sendMessage((prev) => ({
-        ...prev,
+      const currentMessage = {
         text: inputValue,
         ...(mediaType === "image" ? { imageUrl: mediaUrl } : { imageUrl: "" }),
         ...(mediaType === "video" ? { videoUrl: mediaUrl } : { videoUrl: "" }),
-      }));
+      };
+
+      sendMessage(currentMessage);
+
+      if (handleSubmit) handleSubmit(e);
 
       setTimeout(() => {
-        if (handleSubmit) handleSubmit(e);
-
         setInputValue("");
         setMediaUrl(null);
         setMediaType(null);
-      }, 0);
+      }, 100);
     }
   };
 
@@ -177,7 +177,12 @@ export default function SendMessage({ message, sendMessage, handleSubmit }) {
           name="mess"
           placeholder="Nhập tin nhắn..."
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => {
+            sendMessage((prev) => ({
+              ...prev,
+              text: e.target.value,
+            }));
+          }}
           onKeyDown={handleKeyDown}
           className="flex-1 bg-transparent border-none outline-none px-1 py-1.5 lg:px-3 lg:py-2 text-gray-800 dark:text-gray-200 placeholder-gray-500"
         />

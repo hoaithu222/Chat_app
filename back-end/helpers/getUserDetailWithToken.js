@@ -2,14 +2,23 @@ import jwt from "jsonwebtoken"
 import { UserModel } from "../models/UserModel.js"
 
 export default async function getUserDetailWithToken(token) {
-    if (!token) {
+    try {
+        if (!token) {
+            return {
+                message: "session out",
+                logout: true,
+            }
+        }
+        const decode = await jwt.verify(token, process.env.JWT_SECRET_KEY)
+        const user = await UserModel.findById(decode.id).select('-password -refreshToken');
+        return user;
+
+    } catch (error) {
         return {
-            message: "session out",
-            logout: true,
+            message: error.message,
+            error: true,
         }
     }
-    const decode = await jwt.verify(token, process.env.JWT_SECRET_KEY)
-    const user = await UserModel.findById(decode.id).select('-password -refreshToken');
-    return user;
+
 
 }

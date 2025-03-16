@@ -12,7 +12,6 @@ const app = express();
 
 /*
 socket connection
-
 */
 export const server = http.createServer(app);
 const io = new Server(server, {
@@ -34,8 +33,8 @@ io.on('connection', async (socket) => {
     const token = socket.handshake.auth.token;
     // current user details 
     const user = await getUserDetailWithToken(token);
-    socket.join(user?._id.toString());
-    onlineUser.add(user?._id.toString());
+    socket.join(user?._id?.toString());
+    onlineUser.add(user?._id?.toString());
     io.emit('online user', Array.from(onlineUser));
     socket.on('message page', async (userId) => {
         console.log("userid", userId);
@@ -128,12 +127,16 @@ io.on('connection', async (socket) => {
 
         const conversationMessageId = conversation?.message || []
 
-
+        // Use await here to ensure the update completes before proceeding
         await MessageModel.updateMany(
             { _id: { "$in": conversationMessageId }, msgByUserId: otherUserId },
             { "$set": { seen: true } }
         )
 
+        // Wait a small amount of time to ensure MongoDB has updated (optional)
+        // await new Promise(resolve => setTimeout(resolve, 100));
+
+        //send conversation
         const conversationSender = await getConversation(user?._id?.toString())
         const conversationReceiver = await getConversation(otherUserId)
 
